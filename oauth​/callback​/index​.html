@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head><title>TesGauge Auth</title></head>
+<head><meta charset="UTF-8"><title>TesGauge</title></head>
 <body>
+<p>Yönlendiriliyorsunuz...</p>
 <script>
-  var p = new URLSearchParams(window.location.search);
-  var code  = p.get('code');
-  var state = p.get('state');
+  var params = new URLSearchParams(window.location.search);
+  var code  = params.get('code');
+  var state = params.get('state');
   if (code) {
-    window.location.href = 'tesgauge://auth?code=' + encodeURIComponent(code)
-      + (state ? '&state=' + encodeURIComponent(state) : '');
+    window.location.replace(
+      'tesgauge://auth?code=' + encodeURIComponent(code) +
+      '&state=' + encodeURIComponent(state || '')
+    );
   }
 </script>
 </body>
