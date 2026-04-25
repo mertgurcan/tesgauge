@@ -1,18 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="UTF-8"><title>TesGauge</title></head>
+<head><title>TesGauge</title></head>
 <body>
-<p>Yönlendiriliyorsunuz...</p>
 <script>
-  var params = new URLSearchParams(window.location.search);
-  var code  = params.get('code');
-  var state = params.get('state');
-  if (code) {
-    window.location.replace(
-      'tesgauge://auth?code=' + encodeURIComponent(code) +
-      '&state=' + encodeURIComponent(state || '')
-    );
-  }
+  const p = new URLSearchParams(location.search);
+  location.href = `tesgauge://auth?code=${p.get('code')}&state=${p.get('state')}`;
 </script>
 </body>
 </html>
