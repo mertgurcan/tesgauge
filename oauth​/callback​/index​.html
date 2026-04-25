@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head><title>TesGauge</title></head>
+<head>
+  <title>TesGauge OAuth</title>
+  <script>
+    // Authorization code'u alıp uygulamaya geri dön
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const state = params.get('state');
+    
+    if (code) {
+      // Custom scheme ile uygulamaya yönlendir
+      window.location.href = `tesgauge://oauth/callback?code=${code}&state=${state}`;
+    }
+  </script>
+</head>
 <body>
-<script>
-  const p = new URLSearchParams(location.search);
-  location.href = `tesgauge://auth?code=${p.get('code')}&state=${p.get('state')}`;
-</script>
+  <p>Giriş yapılıyor...</p>
+  <p>Otomatik yönlendirilmezseniz <a id="manual" href="#">buraya tıklayın</a></p>
+  <script>
+    document.getElementById('manual').href = window.location.href.replace('https://tesgauge.store', 'tesgauge://');
+  </script>
 </body>
 </html>
