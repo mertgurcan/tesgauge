@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>TesGauge Auth</title></head>
+<body>
+<script>
+  var p = new URLSearchParams(window.location.search);
+  var code  = p.get('code');
+  var state = p.get('state');
+  if (code) {
+    window.location.href = 'tesgauge://auth?code=' + encodeURIComponent(code)
+      + (state ? '&state=' + encodeURIComponent(state) : '');
+  }
+</script>
+</body>
+</html>
